@@ -12,6 +12,8 @@ $blogposts = new WP_Query(array(
   'posts_per_page' => 3
 ));
 
+$blog_id = get_option( 'page_for_posts' );
+
 ?>
 
 <?php if ( $blogposts->have_posts() ): ?>
@@ -22,9 +24,9 @@ $blogposts = new WP_Query(array(
 
       <div class="section-title d-flex justify-content-between align-items-center">
 
-          <h3><?php _e('Blog', 'cinepress') ?></h3>
+        <h3><?php echo get_the_title( $blog_id ) ?></h3>
 
-          <a href="<?php echo get_permalink( get_option( 'page_for_posts' ) ) ?>" class="link"><?php _e('Ver todas as postagens', 'cinepress') ?></a>
+        <a href="<?php echo get_permalink( $blog_id ) ?>" class="link"><?php _e('Ver todas as postagens', 'cinepress') ?></a>
 
       </div>
 
@@ -68,7 +70,7 @@ $blogposts = new WP_Query(array(
 
                   <div class="author">
 
-                    <a href="<?php //echo esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ); ?>">
+                    <a href="<?php echo esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ); ?>">
                       
                       <?php the_author() ?>
 

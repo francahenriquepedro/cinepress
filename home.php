@@ -5,10 +5,6 @@
 
 get_header();
 
-$blogposts = new WP_Query(array(
-  'posts_per_page' => 3
-));
-
 ?>
 
 <?php if ( have_posts() ): ?>
@@ -19,7 +15,7 @@ $blogposts = new WP_Query(array(
 
       <div class="section-title d-flex justify-content-between align-items-center">
 
-          <h3><?php _e('Blog', 'cinepress') ?></h3>
+          <h3><?php echo get_the_title( get_option( 'page_for_posts' ) ) ?></h3>
 
       </div>
 
