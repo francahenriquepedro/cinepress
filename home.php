@@ -5,6 +5,10 @@
 
 get_header();
 
+$blog_id = get_option( 'page_for_posts' );
+
+$categories = get_categories();
+
 ?>
 
 <?php if ( have_posts() ): ?>
@@ -15,7 +19,20 @@ get_header();
 
       <div class="section-title d-flex justify-content-between align-items-center">
 
-          <h3><?php echo get_the_title( get_option( 'page_for_posts' ) ) ?></h3>
+          <h3><?php echo get_the_title( $blog_id ) ?></h3>
+
+          <form id="category-filter" class="form-inline">
+            <div class="form-group">
+              <label for="category"><?php _e('Filtrar por: ', 'cinepress') ?></label>
+              <select class="form-control" id="category">
+                <option value="<?php get_permalink( $blog_id ) ?>"><?php _e('Selecione', 'cinepress') ?></option>
+                <?php foreach( $categories as $category): ?>
+                  <option value="<?php echo esc_url( get_category_link( $category->cat_ID ) ) ?>"><?php echo $category->name; ?></option>
+                <?php endforeach; ?>
+              </select>
+            </div>
+
+          </form>
 
       </div>
 
@@ -102,6 +119,24 @@ get_header();
     </div>
 
   </section>
+
+  <script>
+    (function($){
+
+      $(document).ready(function(){
+
+        $('#category-filter').on('change', 'select#category', function(){
+
+          var url = $(this).val();
+
+          window.location = url;
+
+        });
+
+      });
+
+    })(jQuery);
+  </script>
 
 <?php endif; ?>
 
