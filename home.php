@@ -22,14 +22,23 @@ $categories = get_categories();
           <h3><?php echo get_the_title( $blog_id ) ?></h3>
 
           <form id="category-filter" class="form-inline">
+
             <div class="form-group">
+
               <label for="category"><?php _e('Filtrar por: ', 'cinepress') ?></label>
+
               <select class="form-control" id="category">
+
                 <option value="<?php get_permalink( $blog_id ) ?>"><?php _e('Selecione', 'cinepress') ?></option>
+
                 <?php foreach( $categories as $category): ?>
-                  <option value="<?php echo esc_url( get_category_link( $category->cat_ID ) ) ?>"><?php echo $category->name; ?></option>
+
+                <option value="<?php echo esc_url( get_category_link( $category->cat_ID ) ) ?>"><?php echo $category->name; ?></option>
+              
                 <?php endforeach; ?>
+
               </select>
+
             </div>
 
           </form>
