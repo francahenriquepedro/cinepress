@@ -1,5 +1,8 @@
 <?php 
 
+include 'app/bootstrap.php';
+include 'app/ctp/filmes.php';
+
 /**
  * Adicionando a classe asda em todas as imagens de posts, adicionando um filtro na chanada da função que 
  * seta os atributos da imagem que será exibida quando a função "(get_)the_post_thumbnail"
@@ -22,3 +25,15 @@ function custom_cinepress_images_class_atrributes($attr) {
 }
 
 add_filter('wp_get_attachment_image_attributes','custom_cinepress_images_class_atrributes');
+
+
+function debug( $var ) {
+
+    if ( WP_DEBUG == false) {
+        return false;
+    }
+
+    echo '<pre>';
+    var_dump($var);
+    echo '</pre>';
+}
